@@ -1,0 +1,2 @@
+Main = F() : Integer
+  42

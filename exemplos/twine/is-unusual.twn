@@ -1,0 +1,71 @@
+% ----------------------------------------------------------------------
+%
+%  AUTHOR: Eugene Wallingford
+%  DATE  : 2021/08/25
+%
+%  This program determines if its argument, a number n, has this feature
+%  defined by James Tanton <https://twitter.com/jamestanton/>:
+%
+%  |  For each positive integer N let a and b be the count of 1s and 0s
+%  |  in the binary representation of N. eg N=20 has a=2, b=3, and N=100
+%  |  has a=3, b=4. Is there an N for which N=ab? How about N=(ab)^2?
+%
+%  The program prints two values: does N satisfy N=ab?, does N satisfy
+%  N=(ab)^2?.  It returns n.
+%
+%  The count() and to_binary() are taken from is-special.twn, which also
+%  counts 0s and 1s in the binary expansion of an integer.
+%
+%  POSSIBLE IMPROVEMENT:  Apply the definition as the base case of a
+%  function that converts N to binary and passes counts of 0 and 1
+%  as arguments on the recursive calls.
+%
+%  POSSIBLE EXTENSION:  It would be fun to write a program to search for
+%  or enumerate numbers that have this feature.
+%
+% ----------------------------------------------------------------------
+
+main = f(n : integer returns integer)
+  print(apply_product(to_binary(n), n))
+  print(apply_square (to_binary(n), n))
+  n
+
+apply_product = f(binary_n : integer, n : integer returns boolean)
+  % computes the definition for N=ab
+  n = count(1, binary_n) * count(0, binary_n)
+
+apply_square = f(binary_n : integer, n : integer returns boolean)
+  % computes the definition for N=(ab)**2
+  n = EXP( count(1, binary_n) * count(0, binary_n) , 2 )
+
+% ----------------------------------------------------------------------
+
+count = f(bit : integer, n : integer returns integer)
+  % returns the number of time bit occurs as a digit in n.
+  % intended use is for bit in (0,1) and a binary n       
+  if (n < 10)
+     if (bit = n)  1  else  0
+  else
+     if (bit = MOD(n, 10))
+        1 + count(bit, n/10)
+     else
+        count(bit, n/10)
+
+to_binary = f(n : integer returns integer)
+  % converts a decimal number n to its binary equivalent
+  if (n = 0)
+     0
+  else
+     10 * to_binary(n/2) + MOD(n,2)
+
+% ----------------------------------------------------------------------
+
+MOD = f(m : integer, n : integer returns integer)
+  % standard library function
+  m - m/n * n
+
+EXP = f(m : integer, n : integer returns integer)
+  % standard library function
+  if (n = 0)  1  else  m * EXP(m, n-1)
+
+% ----------------------------------------------------------------------

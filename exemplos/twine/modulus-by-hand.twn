@@ -1,0 +1,9 @@
+mod = f(m : integer, n : integer returns integer)
+  if (m < n)
+     m
+  else
+     mod(m-n, n)
+
+main = f(m : integer, n : integer returns integer)
+  print(m/n)
+  mod(m, n)

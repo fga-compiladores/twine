@@ -1,0 +1,36 @@
+%  FILE: sieve.kln
+%  AUTHOR: Eugene Wallingford
+%  DATE  : 2007/09/25
+%  TASK  : computes and prints a Sieve of Eratosthenes
+
+main = f( n : integer returns boolean)
+  sieveAt(2, n)
+
+sieveAt = f(current : integer, max : integer returns boolean)
+  if (max < current)
+     true
+  else
+     doSieveAt(current, max)
+
+%  doSieveAt exists only because calls to print are allowed
+%  only as the first expression in the body of function.
+
+doSieveAt = f(current : integer, max : integer returns boolean)
+  print( if (isPrime(current)) current else 0 )
+  sieveAt(current+1, max)
+
+isPrime = f( n : integer returns boolean)
+   ~hasDivisorFrom(2, n)
+
+hasDivisorFrom = f(i : integer, n : integer returns boolean)
+  if (i < n)
+     divides(i, n) | hasDivisorFrom(i+1, n)
+  else
+     false
+
+divides = f( a : integer, b : integer returns boolean)
+  MOD(b, a) = 0
+
+%  from Twine library
+MOD = f(m : integer, n : integer returns integer)
+  m - m/n * n

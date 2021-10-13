@@ -1,0 +1,63 @@
+% ---------------------------------------------------------------
+%
+% This program determines if its command-line argument, a number,
+% is "excellent": when split on half n=ab, b*b - a*a = n.  For
+% example, 48 is excellent, because 8**2 - 4**2 == 48.
+%
+% http://programmingpraxis.com/2015/03/24/excellent-numbers/
+%
+% --------------------------------------------------------------- 
+
+% ----------------------------------------------
+% functions from the Twine library
+% ----------------------------------------------
+
+MOD = f(m : integer, n : integer returns integer)
+  m - m/n * n
+
+EXP = f(m : integer, n : integer returns integer)
+  if (n = 0)  1  else  m * EXP(m, n-1)
+
+ODD = f(n : integer returns boolean)
+  if (LE(0, n))
+     (2 * (n/2)) < n
+  else
+     ODD(-n)
+
+LE = f(p : integer, q : integer returns boolean)
+  (p < q) | (p = q)
+
+% ----------------------------------------------
+% helper functions
+% ----------------------------------------------
+
+length = f(n : integer returns integer)
+  if (n < 10)
+     1
+  else
+     1 + length(n / 10)
+
+a = f(n : integer returns integer)    % we could implement this with take
+  n / EXP(10, length(n)/2)
+
+b = f(n : integer returns integer)    % we could implement this with drop
+  MOD(n, EXP(10, length(n)/2))
+
+excellentDiff = f(a : integer, b : integer returns integer)
+  b*b - a*a
+
+% ----------------------------------------------
+% primary functions
+% ----------------------------------------------
+
+isExcellentSwitch = f(n : integer, length : integer returns boolean)
+  if (ODD(length))
+     false
+  else
+     n = excellentDiff(a(n), b(n))
+
+isExcellent = f(n : integer returns boolean)
+  isExcellentSwitch(n, length(n))
+
+main = f(n : integer returns boolean)
+  isExcellent(n)

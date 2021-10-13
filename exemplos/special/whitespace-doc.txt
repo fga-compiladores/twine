@@ -1,0 +1,12 @@
+
+  I generated the file whitespace.twn using this Python program:
+
+print('\t\n\t     \n   \r   \n', end='')
+
+  I can display the whitespace as visible characters using the
+  Unix command 'tr', which translates one character into another:
+
+prompt> cat whitespace.twn | tr " " "*"  | tr "\t" "T" | 
+                             tr "\n" "$" | tr "\r" "v" | more
+T$T*****$***v***$
+

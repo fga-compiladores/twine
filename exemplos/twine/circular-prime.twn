@@ -1,0 +1,85 @@
+%
+%   ported by Eugene Wallingford from a program written
+%   in another language by former student Andrew Howard
+%
+%   A circular prime is a prime number all of which's cyclical
+%   permutations are prime.  For example, 37 is a circular prime,
+%   because 73 is also prime.  113 is, too, because 131 and 311
+%   are prime.
+%
+%   https://en.wikipedia.org/wiki/Circular_prime
+%
+
+main = f(x:integer returns integer)
+  circularPrimesTo(x)
+
+circularPrimesTo = f(x:integer returns integer)
+  circularPrimesToHelper(x+1, 2, 0)
+
+circularPrimesToHelper = f(top:integer, x:integer, count:integer
+                           returns integer)
+  if (x < top)
+     if (isCircularPrime(x))
+        circularPrimesToHelper(top, x+1, count+1)
+     else
+        circularPrimesToHelper(top, x+1, count)
+  else
+     count
+
+isCircularPrime = f(x:integer returns boolean)
+  if (isCircularPrimeHelper(x, log10(x)+1))
+     report(x)
+  else
+     false
+
+isCircularPrimeHelper = f(x:integer, turns:integer returns boolean)
+  if (turns = 0)
+     true
+  else
+     isPrime(x) ^ isCircularPrimeHelper(rotate(x), turns-1)
+
+report = f(x:integer returns boolean)
+  print(x)
+  true
+
+rotate = f(x:integer returns integer)
+  x/10 + ( MOD(x,10) * pow(10, log10(x)) )
+
+pow = f(x:integer, y:integer returns integer)
+  powHelper(x,y,x)
+
+powHelper = f(base:integer, power:integer, total:integer returns integer)
+  if (power = 0)
+     1
+  else if (power = 1)
+     total
+  else
+     powHelper(base, power-1, base*total)
+
+log10 = f(x:integer returns integer)
+  log10Helper(x,0)
+
+log10Helper = f(x:integer, y:integer returns integer)
+  if ((x/10) = 0)
+     y
+  else
+     log10Helper( x/10, y+1 )
+
+% -----  code blatantly stolen from sieve  -----
+
+isPrime = f( n : integer returns boolean)
+   ~hasDivisorFrom(2, n)
+
+hasDivisorFrom = f(i : integer, n : integer returns boolean)
+  if (i < n)
+     divides(i, n) | hasDivisorFrom(i+1, n)
+  else
+     false
+
+divides = f( a : integer, b : integer returns boolean)
+  rem(b, a) = 0
+
+% -----  code from Twine library  -----
+
+MOD = f(m : integer, n : integer returns integer)
+  m - m/n * n

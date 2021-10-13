@@ -1,0 +1,57 @@
+%
+%  AUTHOR: Eugene Wallingford
+%  DATE  : 2021/08/21
+%
+%  This program determines if its argument, a number n, is "special"
+%  as defined by James Tanton:
+%
+%  https://twitter.com/jamestanton/status/1042393711014031360
+%
+%  |  N is "special" if, in binary, N has a 1s and b 0s and a & b are
+%  |  each factors of N (so non-zero).  The first few special numbers
+%  |  are: 2, 4, 6, 8, 10, 12, 16, 18.
+%
+%  I don't think 8 is special by this definition, even though
+%  it is my favorite number.
+%
+
+% --------------------------------------------------------------------
+
+MOD = f(m : integer, n : integer returns integer)
+  % standard library function
+  m - m/n * n
+
+% --------------------------------------------------------------------
+
+divides = f(x : integer, n : integer returns boolean)
+  % returns true if x is a factor of n, for 0 < x <= n
+  MOD(n, x) = 0
+
+count = f(bit : integer, n : integer returns integer)
+  % returns the number of time bit occurs as a digit in n.
+  % intended use is for bit in (0,1) and a binary n       
+  if (n < 10)
+     if (bit = n)  1  else  0
+  else
+     if (bit = MOD(n, 10))
+         1 + count(bit, n/10)
+     else
+         count(bit, n/10)
+
+to_binary = f(n : integer returns integer)
+  % converts a decimal number n to its binary equivalent
+  if (n = 0)
+     0
+  else
+     10 * to_binary(n/2) + MOD(n,2)
+
+% --------------------------------------------------------------------
+
+apply_definition = f(binary_n : integer, n : integer returns boolean)
+  % computes the definition of is_special?, for binary number bin_n
+  divides(count(1, binary_n), n)
+    ^
+  divides(count(0, binary_n), n)
+
+main = f(n : integer returns boolean)
+  apply_definition(to_binary(n), n)

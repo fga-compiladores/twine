@@ -1,0 +1,168 @@
+% ---------------------------------------------------------------
+% This Twine library began as a port of the MinimL library, a
+% collection of utility routines written in MinimL for MinimL by
+% MinimL creator Doug Baldwin.  Note the convention that the
+% names of library functions are in all upper case letters, to
+% help programmers avoid defining conflicting names of their own.
+%
+% History:
+%    January  2002 -- MinimL library created by Doug Baldwin
+%    December 2007 -- Klein library ported by Eugene Wallingford
+%    October  2013 -- Klein library updated by Eugene Wallingford
+%    October  2015 -- EXP function added by Eugene Wallingford
+%    October  2017 -- MAXINT and MININT added by Eugene Wallingford
+%    October  2019 -- MAXINT and MININT updated to 2^31 values
+%    August   2021 -- Twine library ported and updated
+%                                             by Eugene Wallingford
+%
+% We need the main function because our language specification
+% requires one.  Otherwise, we would not be able to compile this
+% file and test its functions.  (Adding separate compilation of
+% a file of functions without a main would be an interesting
+% extension to Twine!)
+% ---------------------------------------------------------------
+
+main = f(testArgument : integer returns boolean)
+  print( SQRT(testArgument) )
+  ODD( testArgument )
+
+% ---------------------------------------------------------------
+% constant functions
+%      These are handy for doing integer computations without
+%      generating overflow or underflow.
+% ----------------------------------------------------------------
+
+MAXINT = f(returns integer)  2147483647
+MININT = f(returns integer) -2147483647 - 1
+
+% ---------------------------------------------------------------
+% boolean functions
+%      We defined functions even for the two primitive operators
+%      because, in an older version of the language, we did not
+%      have ()s as a grouping mechanism.  They remain for
+%      consistency and backward compatibility.
+%
+%      In earlier versions of the library, the non-primitive
+%      operators were implemented in terms of LT and EQ, in order
+%      take advantage of the abstraction.  In this version, I
+%      implement then in terms of the primitive < and = operators.
+%      This makes them more efficient at run-time.
+% ----------------------------------------------------------------
+
+LT = f(p : integer, q : integer returns boolean)
+  p < q
+
+EQ = f(p : integer, q : integer returns boolean)
+  p = q
+
+NE = f( p : integer, q : integer returns boolean)
+  ~ (p = q)
+
+LE = f(p : integer, q : integer returns boolean)
+  (p < q) | (p = q)
+
+GE = f(p : integer, q : integer returns boolean)
+  ~ (p < q)
+
+GT = f(p : integer, q : integer returns boolean)
+  ~(p < q) ^ ~(p = q)
+
+% These two functions can be useful if the compiler does not handle
+% the primitive !, ^, and ~ operators correctly.  We can use these
+% functions in their place and still run code that needs the ops
+
+OR = f(p : integer, q : integer returns boolean)
+  if (p) true else q
+
+AND = f(p : integer, q : integer returns boolean)
+  if (p) q else false
+
+NOT = f(p : integer returns boolean)
+  if (p) false else true
+
+% ---------------------------------------------------------------
+% arithmetic functions
+%      The first three functions are immensely useful when doing
+%      the sort of integer programming for which Twine is so well
+%      suited.  We defined the last four functions for the
+%      primitive arithmetic operators because, in an older version
+%      of an older language, we did not have ()s as a grouping
+%      mechanism.  They remain for consistency and backward
+%      compatibility.
+% ----------------------------------------------------------------
+
+MOD = f(m : integer, n : integer returns integer)
+  m - m/n * n
+
+EXP = f(m : integer, n : integer returns integer)
+  if (n = 0)  1  else  m * EXP(m, n-1)
+
+ABS = f(n : integer returns integer)
+  if (n < 0) -n else n
+
+PLUS = f(p : integer, q : integer returns integer)
+  p + q
+
+MINUS = f(p : integer, q : integer returns integer)
+  p - q
+
+TIMES = f(p : integer, q : integer returns integer)
+  p * q
+
+DIV = f(p : integer, q : integer returns integer)
+  p / q
+
+% -----------------------------------------------------------------
+% The ODD function is based on the idea that n = 2 * floor(n/2)
+% only if n is even, and n is never less than 2 * floor(n/2).
+% Thus asking if n <= 2 * floor( n/2 ) is equivalent to asking
+% if n is even; n being odd is simply the complement of this.
+% This function also checks the sign of its argument in order to
+% accomodate negative case, as its method for calculating
+% floor( n/2 ) works only for natural numbers.
+% -----------------------------------------------------------------
+
+ODD = f(n : integer returns boolean)
+  if (~(n < 0))
+     (2 * (n/2)) < n
+  else
+     ODD(-n)
+
+EVEN = f(n : integer returns boolean)
+  n = (2 * (n/2))
+
+% ---------------------------------------------------------------
+% SQRT  The algorithm uses binary search.  It takes advantage of
+%       the fact that for the naturals, 0 <= sqrt(n) <= n, to
+%       initialize the bounds for the search.  When the search
+%       reaches a point where the bounds are within one of each
+%       other, it chooses the one that is closest to the true
+%       square root to return.
+%
+%       The function SQRTSEARCH directs the binary search, while
+%       SQRTSPLIT splits the range within this search, done in a
+%       separate function so that the program does not have to
+%       recompute the midpoint repeatedly.
+% ----------------------------------------------------------------
+
+SQRT = f(n : integer returns integer)
+  SQRTSEARCH(n, 0, n)
+
+SQRTSEARCH = f(n : integer, low : integer, high : integer returns integer)
+  if (LE(high, low + 1))
+     if (LE( n - TIMES(low,low), TIMES(high,high) - n ))
+        low
+     else
+        high
+  else
+     SQRTSPLIT(n, low, high, PLUS(low, high)/2)
+
+SQRTSPLIT = f(n : integer,
+              low : integer, high : integer, mid : integer
+              returns integer)
+  if (LE( mid*mid, n ))
+     SQRTSEARCH(n, mid, high)
+  else
+     SQRTSEARCH(n, low, mid)
+
+% ----------------------------------------------------------------

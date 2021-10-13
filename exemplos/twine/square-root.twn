@@ -1,0 +1,30 @@
+%
+%  This uses Newton's general method to approximate a square root
+%  in Twine's wonderful world of integers.  The generalized method
+%  can be used to compute the roots of any (real-valued) function.
+%  If we know that we are computing a square root, an even simpler
+%  form of Newton's method works: guess = (n/guess + guess) / 2.
+%
+
+ABS = f(n : integer returns integer)     % from the Twine library
+  if (n < 0) -n else n
+
+fn = f(x : integer, n : integer returns integer)
+  x * x - n
+
+df = f(x : integer returns integer)
+  2 * x
+
+newtonAux = f(guess   : integer, previous : integer,
+              epsilon : integer, n        : integer returns integer)
+  if (epsilon < ABS(previous-guess))
+    newtonAux(guess - fn(guess,n)/df(guess), guess, epsilon, n)
+  else
+    guess
+
+newton = f(guess : integer, epsilon : integer, n : integer returns integer)
+  newtonAux( guess - fn(guess,n)/df(guess), guess, epsilon, n )
+
+main = f(n : integer, epsilon : integer returns integer)
+  newton(n/2, epsilon, n)
+

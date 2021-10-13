@@ -1,0 +1,36 @@
+% ----------------------------------------------
+% functions from the Twine library
+% ----------------------------------------------
+
+MOD = f(m : integer, n : integer returns integer)
+  m - n*(m/n)
+
+% ----------------------------------------------
+% function to reverse a number
+% ----------------------------------------------
+
+reverse = f(n : integer returns integer)
+  reverseL(n, 0)
+
+reverseL = f(n : integer, nR : integer returns integer)
+  if (n = 0)
+     nR
+  else
+     reverseL(n / 10, 10 * nR + MOD(n, 10))
+
+% ----------------------------------------------
+% determine if a number is a palindrome
+% ----------------------------------------------
+
+isPalindrome = f(n : integer returns boolean)
+  0 = (n - reverse(n))
+
+% ----------------------------------------------
+% main function: takes command-line argument
+% ----------------------------------------------
+
+main = f(number : integer returns boolean)
+  print(number)
+  print(reverse(number))
+  isPalindrome(number)
+

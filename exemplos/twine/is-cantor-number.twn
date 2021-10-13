@@ -1,0 +1,35 @@
+%  Generalized Cantor Sets
+%
+%  https://twitter.com/wtgowers/status/1170692765342216192
+%
+%     The Cantor set is the set of all real numbers between 0 and 1
+%     that have just 0s and 1s in their ternary expansion (i.e.,
+%     no 2s). It is what you get if you continue this process of
+%     "removing the middle third" to infinity.
+%
+%  We can generalize this to think of an integer Cantor set to
+%  consist of all integers that have just 0s and 1s in their base-3
+%  representation.
+%
+%  In this version, I convert n to base-3 and then check the result
+%  digit-by-digit.  The answer can be found more efficiently if I
+%  check each digit as we generate it, rather than make a second pass.
+
+main = f(n : integer returns boolean)
+  has_no_2s(to_base3(n))
+
+to_base3 = f(n : integer returns integer)
+  if (n < 3)
+     n
+  else
+     10 * to_base3(n / 3) + MOD(n, 3)
+
+has_no_2s = f(n : integer returns boolean)
+  if (n < 10)
+     n < 2
+  else
+     has_no_2s(n / 10) ^ has_no_2s(MOD(n, 10))
+
+% from the Twine library
+MOD = f(m : integer, n : integer returns integer)
+  m - m/n * n

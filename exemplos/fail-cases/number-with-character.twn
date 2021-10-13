@@ -1,0 +1,8 @@
+% This program includes an integer token that contains an
+% alphabetic character.  Or does it include an identifier
+% token that starts with a numeric digit?  In either case,
+% it should break at "123a".
+
+main = f(n : integer returns boolean)
+  123a > n
+

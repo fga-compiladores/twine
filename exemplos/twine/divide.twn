@@ -1,0 +1,40 @@
+% * --------------------------------------------------------------- *
+% *                                                                 *
+% * This program prints the first n digits of a/b and returns       *
+% * -- and prints -- the division's remainder at that point.        *
+% * For example,                                                    *
+% *   $ flair divide 7 12 2                                         *
+% *   5                                                             *
+% *   8                                                             *
+% *   4                                                             *
+% *   $ flair divide 7 12 4                                         *
+% *   5                                                             *
+% *   8                                                             *
+% *   3                                                             *
+% *   3                                                             *
+% *   4                                                             *
+% *                                                                 *
+% * --------------------------------------------------------------- *
+
+main = f(a : integer, b : integer, n : integer returns integer)
+  if (n = 0)
+     a
+  else
+     printAndDivide(a, b, n)
+
+% * --------------------------------------------------------------- *
+% * primary function                                                *
+% * --------------------------------------------------------------- *
+
+printAndDivide = f(a : integer, b : integer, n : integer returns integer)
+  print((10 * a) / b)
+  main (MOD(a*10, b), b, n-1)
+
+% * --------------------------------------------------------------- *
+% * functions from the Twine library                                *
+% * --------------------------------------------------------------- *
+
+MOD = f(m : integer, n : integer returns integer)
+  m - m/n * n
+
+% * --------------------------------------------------------------- *

@@ -1,0 +1,6 @@
+main = f(n : integer returns boolean)
+  negative?(n)
+
+negative? = f(n : integer returns boolean)
+  n < 0
+

@@ -1,0 +1,35 @@
+%
+%  FILE  : factors.kln
+%  AUTHOR: Eugene Wallingford
+%  DATE  : 2021/08/21
+%  TASK  : all the factors of an integer n less than n
+%          and returns n (the largest factor)
+
+main = f(n : integer returns integer)
+  loopToN(n, 1)
+
+loopToN = f(n : integer, current : integer returns integer)
+  if (n = current)
+     n
+  else
+     testAndLoop(n, current)
+
+testAndLoop = f(n : integer, current : integer returns integer)
+  if (divides(current, n))
+     printAndLoop(n, current)
+  else
+     loopToN(n, current+1)
+
+printAndLoop = f(n : integer, current : integer returns integer)
+  print(current)
+  loopToN(n, current+1)
+
+divides = f(a : integer, b : integer returns boolean)
+   remainder(b, a) = 0
+
+remainder = f(num : integer, den : integer returns integer)
+  if (num < den)
+     num
+  else
+     remainder( num-den, den)
+

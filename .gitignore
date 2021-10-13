@@ -1,0 +1,4 @@
+.vscode/
+.hypothesis/
+.mypy_cache/
+__pycache__/

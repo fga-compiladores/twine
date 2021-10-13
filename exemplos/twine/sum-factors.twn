@@ -1,0 +1,41 @@
+%
+% FILE  : sum-factors.twn
+% AUTHOR: Eugene Wallingford
+% DATE  : 2021/08/21
+% TASK  : prints all the factors of an integer n, summing them
+%         along the way, and returns n - sum()
+%
+
+loopToN = f(n : integer, current : integer, sum : integer returns integer)
+  if (n = current)
+     n - sum
+  else
+     testAndLoop(n, current, sum)
+
+testAndLoop = f(n : integer,
+                current : integer,
+                sum : integer
+                returns integer)
+  if (divides(current, n))
+     printCurrentAndLoop(n, current, sum+current)
+  else
+     loopToN(n, current+1, sum)
+
+printCurrentAndLoop = f(n : integer,
+                        current : integer,
+                        sum : integer
+                        returns integer)
+  print(current)
+  loopToN(n, current+1, sum)
+
+divides = f(a : integer, b : integer returns boolean)
+  remainder(b, a) = 0
+
+remainder = f( num : integer, den : integer returns integer)
+  if (num < den)
+     num
+  else
+     remainder(num-den, den)
+
+main = f(n : integer returns integer)
+  loopToN(n, 1, 0)      % n, current, sum

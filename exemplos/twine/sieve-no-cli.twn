@@ -1,0 +1,43 @@
+%
+%  FILE  : sieve.twn
+%  AUTHOR: Eugene Wallingford
+%  DATE  : 2021/08/21
+%  TASK  : computes and prints a Sieve of Eratosthenes up to 40
+%          does not use command-line argument
+%
+
+main = f(n : integer returns boolean)
+  sieveAt(2, 40)
+
+sieveAt = f(current : integer, max : integer returns boolean)
+  if (max < current)
+     true
+  else
+     doSieveAt(current, max)
+
+%
+%  doSieveAt exists only because calls to print are allowed
+%  only as the first expression in the body of function.
+%
+
+doSieveAt = f(current : integer, max : integer returns boolean)
+  print( if (isPrime(current)) current else 0 )
+  sieveAt(current+1, max)
+
+isPrime = f(n : integer returns boolean)
+  ~hasDivisorFrom(2, n)
+
+hasDivisorFrom = f(i : integer, n : integer returns boolean)
+  if (i < n)
+     divides(i, n) | hasDivisorFrom(i+1, n)
+  else
+     false
+
+divides = f(a : integer, b : integer returns boolean)
+  rem(b, a) = 0
+
+rem = f(num : integer, den : integer returns integer)
+  if (num < den)
+     num
+  else
+     rem( num-den, den)

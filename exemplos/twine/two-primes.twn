@@ -1,0 +1,68 @@
+%
+%  integer  :=  digit  |  integer digit
+%
+
+emirp = f(n: integer returns boolean)
+  isPrime(n) ^ isPrime(reverse(n))
+
+snowball = f(n: integer returns boolean)
+  isPrime(n) ^ (if (n < 10) true else isPrime(n/10))
+
+% *--------------------------------------*
+% * control functions for main program:  *
+% *    3 for emirp, 5 for snowball       *
+% *    8 for both emirp and snowball     *
+% *--------------------------------------*
+
+doBoth = f(n: integer returns boolean)
+  print(emirp(n))
+  snowball(n)
+
+main = f(n: integer, selector: integer returns boolean)
+  if (selector = 3)
+     emirp(n) 
+  else
+     if (selector = 5)
+        snowball(n)
+     else
+        if (selector = 8)
+           doBoth(n)
+        else false
+
+% *--------------------------------------*
+% * code to compute prime from sieve     *
+% *--------------------------------------*
+
+isPrime = f(n : integer returns boolean)
+   ~hasDivisorFrom(2, n/2)
+
+hasDivisorFrom = f(i : integer, n : integer returns boolean)
+  if (i < n)
+     divides(i, n) | hasDivisorFrom(i+1, n)
+  else
+     false
+
+divides = f( a : integer, b : integer returns boolean)
+  MOD(b, a) = 0
+
+% *--------------------------------------*
+% * code for reverse from palindrome     *
+% *--------------------------------------*
+
+reverse = f(n : integer returns integer)
+  reverseL(n, 0)
+
+reverseL = f(n : integer, nR : integer returns integer)
+  if (n = 0)
+     nR
+  else
+     reverseL(n / 10, 10 * nR + MOD(n, 10))
+
+% *--------------------------------------*
+% * code from Twine library              *
+% *--------------------------------------*
+
+MOD = f(m : integer, n : integer returns integer)
+  m - m/n * n
+
+% *--------------------------------------*

@@ -1,0 +1,22 @@
+main = f(n : integer returns boolean)
+  divisibleByParts( n/10, MOD(n, 10) )
+
+divisibleByParts = f(left : integer, right : integer returns boolean)
+  divisibleByDifference( left - right * 2 )
+
+divisibleByDifference = f(diff : integer returns boolean)
+  if ((diff = 7) | (diff = 0) | (diff = -7) | (diff = -14))
+     true
+  else
+     if (diff < 14)
+        false
+     else
+        main(diff)
+
+% ------------------------------
+% recurring utility from lib.twn
+% ------------------------------
+
+MOD = f(m : integer, n : integer returns integer)
+  m - m/n * n
+

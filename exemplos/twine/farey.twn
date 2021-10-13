@@ -1,0 +1,70 @@
+%
+%   Eugene Wallingford
+%   October 21, 2010
+%   http://www.cs.uni.edu/~wallingf/blog/
+%         archives/monthly/2010-10.html#e2010-10-25T16_50_29.htm
+%
+
+main = f(xNum : integer, xDen : integer, N : integer returns integer)
+  print( fareyNum(xNum, xDen, N) )
+  fareyDen(xNum, xDen, N)
+
+fareyNum = f(xNum : integer, xDen : integer, N : integer returns integer)
+  fareySelectNum(N,
+                 whileLoopFor(1, xNum, xDen, N, 0, 1, 1, 1),
+                 whileLoopFor(2, xNum, xDen, N, 0, 1, 1, 1),
+                 whileLoopFor(3, xNum, xDen, N, 0, 1, 1, 1),
+                 whileLoopFor(4, xNum, xDen, N, 0, 1, 1, 1))
+
+fareyDen = f(xNum : integer, xDen : integer, N : integer returns integer)
+  fareySelectDen(N,
+                 whileLoopFor(1, xNum, xDen, N, 0, 1, 1, 1),
+                 whileLoopFor(2, xNum, xDen, N, 0, 1, 1, 1),
+                 whileLoopFor(3, xNum, xDen, N, 0, 1, 1, 1),
+                 whileLoopFor(4, xNum, xDen, N, 0, 1, 1, 1))
+
+fareySelectNum = f(N : integer,
+                   a : integer, b : integer, c : integer, d : integer
+                   returns integer)
+  if (GT(b, N))  c  else  a
+
+fareySelectDen = f(N : integer,
+                   a : integer, b : integer, c : integer, d : integer
+                   returns integer)
+  if (GT(b, N))  d  else  b
+
+whileLoopFor = f(selector : integer,
+                 xNum : integer, xDen : integer,
+                 N : integer,
+                 a : integer, b : integer, c : integer, d : integer
+                 returns integer)
+  if (GT(b, N) | GT(d, N))
+     if      (selector = 1)  a
+     else if (selector = 2)  b
+     else if (selector = 3)  c
+     else                    d
+  else
+     if (fractionEqual(xNum, xDen, a+c, b+d))
+        if      (selector = 1)  a+c
+        else if (selector = 2)  b+d
+        else if (selector = 3)  a+c
+        else                    b+d
+     else
+        if (fractionGreater(xNum, xDen, a+c, b+d))
+           whileLoopFor(selector, xNum, xDen, N, a+c, b+d, c, d)
+        else
+           whileLoopFor(selector, xNum, xDen, N, a, b, a+c, b+d)
+
+fractionEqual = f(x : integer, xd : integer, y : integer, yd : integer
+                  returns boolean)
+  x * yd = y * xd
+
+fractionGreater = f(x : integer, xd : integer, y : integer, yd : integer
+                    returns boolean)
+  GT(x * yd, y * xd)
+
+% --- from Twine standard library ---
+
+GT = f(p : integer, q : integer returns boolean)
+  ~(p < q) ^ ~(p = q)
+
