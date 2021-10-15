@@ -11,7 +11,7 @@ Declaration = Tuple["ArgDefs", type, "SExpr"]
 ArgDefs = List[Tuple[str, type]]
 
 # Representa uma expressão Twine como S-Expression
-SExpr = Union[tuple, str, int, bool]
+SExpr = Union[list, str, int, bool]
 
 
 def transform(tree: Tree) -> IR:

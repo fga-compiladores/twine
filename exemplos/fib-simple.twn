@@ -1,0 +1,15 @@
+fib = f ( n : integer returns integer ) 
+    if ( n < 2 )
+       1
+    else
+       fib ( n - 1 ) + fib ( n - 2 )
+
+main = f ( n : integer returns boolean ) 
+    run_main ( 0 , n - 1 )
+
+run_main = f ( step : integer , n : integer returns boolean ) 
+    print ( fib ( step ) )
+    if ( step = n )
+       true
+    else
+       run_main ( step + 1 , n )

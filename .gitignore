@@ -2,3 +2,6 @@
 .hypothesis/
 .mypy_cache/
 __pycache__/
+_answer/
+_v*/
+_misc/
