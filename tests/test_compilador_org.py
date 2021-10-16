@@ -68,11 +68,11 @@ def test_cria_a_representação_interna_da_função_add(twine):
             Tree("param", ["y", "integer"]),
         ],
     )
-    define.children[3]= Tree("add", ["40", "2"])
+    define.children[3] = Tree("add", ["x", "y"])
 
     print(ast.pretty())
     ir = transform(ast)
-    
+
     assert len(ir) == 1
     assert "add" in ir
 
