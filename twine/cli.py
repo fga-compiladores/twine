@@ -27,7 +27,7 @@ def main(
     # Realiza a análise léxica e imprime sequência de tokens
     if show_tokens:
         for tk in lex(src):
-            print(f"{tk.kind:10}: {tk}")
+            print(f"{tk.type:10}: {tk}")
 
     # Realiza a análise sintática e imprime a árvore sintática
     # como retornada pelo Lark.

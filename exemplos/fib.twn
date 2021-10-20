@@ -1,9 +1,9 @@
 % Calcula números de fibonacci de forma elegante e ineficiente.
 fib = f( n: integer returns integer ) 
-    if ( n < 2 )
+    if (n < 2)
        1
     else
-       fib( n - 1 ) + fib( n - 2 )
+       fib(n - 1) + fib(n - 2)
 
 % A função main() executa a fib(n) para todos numeros de 1 a n.
 main = f( n: integer returns boolean ) 

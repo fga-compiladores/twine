@@ -1,7 +1,7 @@
 """
 # `[re-basico]`: Aplicações simples de expressões regulares 
 
-Agora começa a nossa jornada de implementar todas as tarefas esboçadas em `[compilador_org]`. Como vimos antes, o primeiro de compilação consiste na análise léxica. A competência atual verifica se você consegue montar um analisador léxico simples baseado em expressões regulares. Para isso, modificaremos a função `lex(src)` em twine/lexer.py.
+Agora começa a nossa jornada de implementar todas as tarefas esboçadas em `[compilador_org]`. Como vimos antes, o primeiro passo de compilação consiste na análise léxica. A competência atual verifica se você consegue montar um analisador léxico simples baseado em expressões regulares. Para isso, modificaremos a função `lex(src)` em twine/lexer.py.
 
 As regras da análise léxica estão descritas de maneira informal na [documentação do Twine](http://www.cs.uni.edu/~wallingf/teaching/cs4550/compiler/specification.html#lexical-features). 
 
