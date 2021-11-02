@@ -136,7 +136,25 @@ O código fica no github classroom e para enviar novas versões, basta subir um 
 
 É possível resolver as questões em várias ordens diferentes, mas existe uma sequência natural para se seguir. Em alguns casos, existem dependências entre as questões, mas às vezes é possível pular uma questão ou resolvê-la de forma incompleta antes de avançar para a próxima.
 
+### Básicas
 
-1. twine_intro
+1. twine_info
 2. compilador_org
-3. (ainda no forno...)
+3. re_basico
+4. lex_re
+5. cfg_parse
+6. ast
+7. ir
+8. eval
+
+### Teóricas
+
+1. first_follow
+2. ll1
+3. thompson
+
+### Avançadas
+
+1. eval_fn
+2. lexer
+3. recur
