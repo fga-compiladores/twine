@@ -39,6 +39,20 @@ def parse(twine):
 
 
 @pytest.fixture(scope="session")
+def eval(twine):
+    from twine.interpreter import eval
+
+    return eval
+
+
+
+@pytest.fixture
+def env(twine):
+    from twine.interpreter import default_env
+
+    return default_env()
+
+@pytest.fixture(scope="session")
 def spec():
     return SimpleNamespace(
         keywords={

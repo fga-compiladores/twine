@@ -8,11 +8,12 @@ Assim como discutido na atividade `[compiladores_org]`, a função `eval(sexpr, 
 - Verificamos o tipo da S-Expr
 - eval() Retorna inteiros e booleanos imediatamente
 - No caso de strings, consulta o dicionário env e retorna o valor correspondente.
-- Para listas, avalia recursivamente todos os elementos e executa o primeiro resultado passando os valores seguintes como argumentos. 
+- Para listas, avalia recursivamente todos os elementos e executa o primeiro resultado passando os valores seguintes como argumentos.
+- Também é necessário lidar com alguns comandos especiais como o "if" e as avaliações "curto-circuito" para os operadores lógicocs "|" e "^".
 
 Por exemplo, na S-Expr `["+", 40, 2]` extraímos a função associada ao `"+"` a partir do dicionário e os dois outros elementos seguem inalterados, pois são números inteiros. Isso resulta na lista `[lambda x, y: x + y, 40, 2]`. O resultado desta operação pode ser obtido por uma expressão como `lst[0](*lst[1:])`, onde assume-se que o primeiro elemento é uma função e os outros são seus argumentos (o Python utiliza a notação *args para expandir uma lista nos argumentos de uma função).
 
-Observe que, para o interpretador funcionar, é necessário registrar as funções associadas aos operadores no ambiente padrão. A função `default_env()`, no mesmo módulo, declara este ambiente. Complete a definição incluindo todos os outros operadores suportados pelo Twine. 
+Observe que, para o interpretador funcionar, é necessário registrar as funções associadas aos operadores no ambiente padrão. A função `default_env()`, no mesmo módulo, declara este ambiente. Complete a definição incluindo todos os outros operadores suportados pelo Twine. Note que os operadores já estão declarados no módulo `twine/stdlib.py` e o dicionário de símbolos padrão já está declarado como GLOBALS. Use `ChainMap` para evitar modificações a este dicionário.
 
 Existem vários pequenos detalhes necessários para que um interpretador funcione corretamente. O módulo de testes verifica exaustivamente vários casos potencialmente problemáticos e se existe alguma omissão importante na implementação. Termine a implementação de eval() e default_env() até passar em todos os testes. 
 
