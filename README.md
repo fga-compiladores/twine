@@ -143,7 +143,7 @@ O código fica no github classroom e para enviar novas versões, basta subir um 
 3. re_basico
 4. lex_re
 5. cfg_parse
-6. ast
+6. cfg_ast
 7. ir
 8. eval
 

@@ -32,6 +32,13 @@ def lex(twine):
 
 
 @pytest.fixture(scope="session")
+def parse(twine):
+    from twine.parser import parse
+
+    return parse
+
+
+@pytest.fixture(scope="session")
 def spec():
     return SimpleNamespace(
         keywords={
@@ -49,3 +56,8 @@ def spec():
         punctuation=[*"():,"],
         special_characters=[*"():,+-*/<=^|~%$_"],
     )
+
+
+@pytest.fixture(scope="session")
+def examples():
+    return PROJECT_PATH / "examples"
