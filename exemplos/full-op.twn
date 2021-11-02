@@ -1,0 +1,12 @@
+% Utiliza todos operadores do Twine
+main = f (a: integer, b: integer returns integer) 
+    if (a < b)
+        a + b - 2
+    else if (bools(b = a, b < a))
+        a * b / 2
+    else
+        a * b + 2
+
+
+bools = f (a: boolean, b: boolean returns boolean)
+    a | b ^ a

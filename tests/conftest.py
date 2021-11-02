@@ -60,4 +60,4 @@ def spec():
 
 @pytest.fixture(scope="session")
 def examples():
-    return PROJECT_PATH / "examples"
+    return PROJECT_PATH / "exemplos"

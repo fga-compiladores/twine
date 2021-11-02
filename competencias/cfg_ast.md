@@ -14,8 +14,7 @@ simple : term "+" simple
        | term "-" simple
 ```
 
-possui uma ambiguidade durante o uso. O Lark, por padrão, omite os terminais declarados de forma literal (como uma string), e portanto monta uma árvore idêntica do tipo `Tree("simple", [x, y])`, com os dois filhos do tipo
-"term" e "simple" respectivamente. Para distinguir entre as duas operações, podemos utilizar o operador de renomeação, como abaixo, 
+possui uma ambiguidade durante o uso. O Lark, por padrão, omite os terminais declarados de forma literal (como uma string), e portanto monta uma árvore idêntica do tipo `Tree("simple", [x, y])`, com os dois filhos do tipo "term" e "simple" respectivamente. Para distinguir entre as duas operações, podemos utilizar o operador de renomeação, como abaixo, 
 
 ```lark
 simple : term "+" simple  -> add
@@ -54,7 +53,7 @@ Nos testes eliminamos qualquer referência às regras correspondentes a EXPRESSS
 | --------- | ---- |
 | `x "=" y` | eq   |
 | `x "<" y` | lt   |
-| `x ">" y` | or_  |
+| `x "|" y` | or_  |
 | `x "+" y` | add  |
 | `x "-" y` | sub  |
 | `x "^" y` | and_ |
