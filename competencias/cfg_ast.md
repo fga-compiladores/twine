@@ -1,4 +1,3 @@
-"""
 # `[cfg_ast]`: Criação de árvores sintáticas 
 
 Diferentemente da maioria das bibliotecas que auxiliam na criação de parsers, Lark produz automaticamente uma árvore sintática como saída do analisador sintático, sem a necessidade de nenhum código adicional. Esta árvore, no entanto, nem sempre possui um formato ideal e pode carregar algumas idiossincrasias de como a gramática foi definida que não carregam muito significado semântico.
