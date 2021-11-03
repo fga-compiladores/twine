@@ -49,15 +49,15 @@ Use estas duas regras para moldar as árvores sintáticas produzidas pela gramá
 
 Nos testes eliminamos qualquer referência às regras correspondentes a EXPRESSSION, SIMPLE-EXPRESSION, TERM e FACTOR na [gramática do Twine](http://www.cs.uni.edu/~wallingf/teaching/cs4550/compiler/specification.html) e renomeamos as regras de operadores para utilizar os nomes correspondentes do Python como declarados no módulo operator. 
 
-| Operação  | nome |
-| --------- | ---- |
-| `x "=" y` | eq   |
-| `x "<" y` | lt   |
-| `x "|" y` | or_  |
-| `x "+" y` | add  |
-| `x "-" y` | sub  |
-| `x "^" y` | and_ |
-| `x "*" y` | mul  |
-| `x "/" y` | div  |
-| `"~" x`   | not  |
-| `"-" x`   | neg  |
+| Operação       | nome |
+| -------------- | ---- |
+| `x "=" y`      | eq   |
+| `x "<" y`      | lt   |
+| `x "&vert;" y` | or_  |
+| `x "+" y`      | add  |
+| `x "-" y`      | sub  |
+| `x "^" y`      | and_ |
+| `x "*" y`      | mul  |
+| `x "/" y`      | div  |
+| `"~" x`        | not_ |
+| `"-" x`        | neg  |
