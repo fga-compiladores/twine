@@ -156,5 +156,5 @@ O código fica no github classroom e para enviar novas versões, basta subir um 
 ### Avançadas
 
 1. eval_fn
-2. lexer
+2. lex_re
 3. recur
