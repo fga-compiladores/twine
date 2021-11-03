@@ -53,7 +53,7 @@ Nos testes eliminamos qualquer referência às regras correspondentes a EXPRESSS
 | -------------- | ---- |
 | `x "=" y`      | eq   |
 | `x "<" y`      | lt   |
-| `x "|" y` | or_  |
+| `x "\|" y`     | or_  |
 | `x "+" y`      | add  |
 | `x "-" y`      | sub  |
 | `x "^" y`      | and_ |
