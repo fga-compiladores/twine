@@ -33,7 +33,7 @@ def token(typ, data, **kwargs):
     "ex",
     "x y1 nome snake_case camelCase ALL_CAPS $ $$ r$ $1 $42 $_ $var $ugly$but_valid".split(),
 )
-def test_identificadores_válidos(ex, lex):
+def test_identificadores_validos(ex, lex):
     assert normalize(lex(ex)) == [Token("IDENTIFIER", ex)]
 
 
@@ -41,18 +41,18 @@ def test_identificadores_válidos(ex, lex):
     "ex",
     "_ _foo _A".split(),
 )
-def test_identificadores_inválidos(ex, lex):
+def test_identificadores_invalidos(ex, lex):
     with pytest.raises(Exception):
         print(f"Aceitou identificador inválido: {normalize(lex(ex))}")
 
 
-def test_identifica_números_inteiros(lex):
+def test_identifica_numeros_inteiros(lex):
     for _ in range(1000):
         src = str(randint(0, 100) * randint(1, 1000))
         assert lex(src) == [Token("INTEGER", src)]
 
 
-def test_ignora_comentários(lex):
+def test_ignora_comentarios(lex):
     tokens = lex("x %comentário")
     assert tokens[-1] == "x", "Tokens de comentários devem ser removidos da saída"
     assert tokens == ["x"]
