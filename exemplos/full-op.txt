@@ -1,0 +1,1 @@
+{'main': Declaration(args=[('a', int), ('b', int)], returns=int, body=['if', ['<', 'a', 'b'], ['+', 'a', ['-', 'b', 2]], ['if', ['bools', ['=', 'b', 'a'], ['<', 'b', 'a']], ['*', 'a', ['/', 'b', 2]], ['+', ['*', 'a', 'b'], 2]]]), 'bools': Declaration(args=[('a', bool), ('b', bool)], returns=bool, body=['|', 'a', ['^', 'b', 'a']])}

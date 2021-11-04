@@ -11,6 +11,7 @@ from .ir import IR, SExpr, Declaration
 
 EOF = Token("EOF", "$")  # representa o fim do arquivo
 STOP = deque([EOF])
+kinds = {"integer": int, "boolean": bool}
 
 # Esta função é o ponto de entrada.
 # Recebe uma string de código e retorna a representação interna diretamente.
@@ -42,7 +43,7 @@ def read(kind, tokens):
 
 def expect(lit, tokens):
     "Espera um literal"
-    if peek(tokens) == kind:
+    if peek(tokens) == lit:
         return next(tokens)
     raise SyntaxError(f"esperava {lit!r}, obteve {peek(tokens)}")
 
@@ -60,21 +61,21 @@ def program(tokens) -> IR:
 
 def define(tokens) -> Tuple[str, Declaration]:
     """IDENTIFIER "=" "f" "(" params "returns" TYPE ")" body"""
-    name = read("IDENTIFIER", tokens)
+    name = str(read("IDENTIFIER", tokens))
     expect("=", tokens)
     expect("f", tokens)
     expect("(", tokens)
     argdefs = params(tokens)
     expect("returns", tokens)
-    restype = read("TYPE", tokens)
+    restype = kinds[read("IDENTIFIER", tokens))]
     expect(")", tokens)
-    body = expr(tokens)
+    sexpr = body(tokens)
 
     # Cria declaração e retorna
-    decl = (argdefs, restype, body)
+    decl = Declaration(argdefs, restype, sexpr)
     return (name, decl)
 
-def expr(tokens) -> SExpr:
+def body(tokens) -> SExpr:
     return ...
 
 ... 

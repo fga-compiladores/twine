@@ -1,0 +1,1 @@
+{'main': Declaration(args=[], returns=int, body=42)}

@@ -10,7 +10,7 @@ def error(*args):
     raise NotImplementedError("não pode usar o método lex() da classe Lark.")
 
 
-@pytest.yield_fixture()
+@pytest.fixture()
 def lex(twine):
     try:
         from twine import lexer_manual as mod

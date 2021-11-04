@@ -39,6 +39,14 @@ def parse(twine):
 
 
 @pytest.fixture(scope="session")
+def ir(twine):
+    from twine.parser import parse
+    from twine.ir import transform
+
+    return lambda src: transform(parse(src))
+
+
+@pytest.fixture(scope="session")
 def eval(twine):
     from twine.interpreter import eval
 

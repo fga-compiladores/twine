@@ -14,7 +14,7 @@ Modifique o módulo `twine/ir.py` para incluir a classe IrTransformer como abaix
 ```python
 from lark import Transformer, v_args
 
-class IrTransformer(Transfomer):
+class IrTransformer(Transformer):
     def program(self, def_list):
        return {...}
     
@@ -34,7 +34,7 @@ Você deve criar métodos para lidar com todas as regras da gramática com o int
 
     # Converte os terminais de inteiros.
     def INTEGER(self, tk):
-       return int
+       return int(tk)
 
     # Cria S-Expression para o operador de soma
     @v_args(inline=True)
