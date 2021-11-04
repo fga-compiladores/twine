@@ -46,7 +46,7 @@ def token(typ, data, **kwargs):
 
 
 @pytest.mark.parametrize("ex", EXEMPLOS)
-def test_exemplos_válidos(ex, lex):
+def test_exemplos_validos(ex, lex):
     src, pattern = ex.rsplit("\n", 1)
     expected = [*map(token, pattern.split(), src.split())]
     assert lex(src) == expected
@@ -56,7 +56,7 @@ def test_exemplos_válidos(ex, lex):
     "ex",
     "x y1 nome snake_case camelCase ALL_CAPS $ $$ r$ $1 $42 $_ $var $ugly$but_valid".split(),
 )
-def test_identificadores_válidos(ex, lex):
+def test_identificadores_validos(ex, lex):
     assert normalize(lex(ex)) == [Token("IDENTIFIER", ex)]
 
 
@@ -64,12 +64,12 @@ def test_identificadores_válidos(ex, lex):
     "ex",
     "_ _foo _A".split(),
 )
-def test_identificadores_inválidos(ex, lex):
+def test_identificadores_invalidos(ex, lex):
     with pytest.raises(Exception):
         print(f"Aceitou identificador inválido: {normalize(lex(ex))}")
 
 
-def test_identifica_números_inteiros(lex):
+def test_identifica_numeros_inteiros(lex):
     for _ in range(1000):
         src = str(randint(0, 100) * randint(1, 1000))
         assert lex(src) == [Token("INTEGER", src)]
