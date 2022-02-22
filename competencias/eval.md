@@ -1,5 +1,5 @@
 """
-# `[eval]`: Avaliando código
+# `[eval]`: Avaliando código (5pts)
 
 A função `eval()` do Python recebe uma string de código, interpretando-a como código Python, e retorna o valor correspondente. Por exemplo `eval("x + 2", {"x": 40})` retorna 42. Vamos criar a nossa própria função eval para Twine que, ao invés de receber uma string, recebe uma S-Expression e retorna o resultado correspondente. Assim como na versão Python, nossa função de avaliação precisa de um ambiente de execução que, no nosso caso, pode ser somente um dicionário com o valor das variáveis locais.
 

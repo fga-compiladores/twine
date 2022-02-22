@@ -1,4 +1,4 @@
-# `[lex_re]`: Análise léxica manual 
+# `[lex_re]`: Análise léxica manual (5pts)
 
 Na competência `[lex_lark]`, criamos um analisador léxico de forma declarativa utilizando o Lark. Agora, vamos criar um analisador léxico manualmente baseado em expressões regulares. A [documentação do módulo `re`](https://docs.python.org/3/library/re.html#writing-a-tokenizer) no próprio Python mostra um exemplo de como criar um tokenizador (analisador léxico).
 

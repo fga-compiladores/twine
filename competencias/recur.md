@@ -1,4 +1,4 @@
-# `[recur]`: Descida recursiva
+# `[recur]`: Descida recursiva (10 pts)
 
 Implemente a gramática do Twine utilizando o algoritmo de descida recursiva. Testaremos os mesmos casos passados para o teste da competência `[ast]`, desabilitando o método .parse() das gramáticas do Lark. A implementação deve ficar no arquivo `twine/recur.py` e possuir aproximadamente a estrutura abaixo:
 

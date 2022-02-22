@@ -1,4 +1,4 @@
-# `[first_follow]`: conjuntos First e Follow 
+# `[first_follow]`: conjuntos First e Follow (5pts)
 
 Responda a questão no arquivo manual/first_follow.txt.
 

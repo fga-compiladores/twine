@@ -1,4 +1,4 @@
-# `[thomspon]`: Construção de Thompson
+# `[thomspon]`: Construção de Thompson (3 pts)
 
 A regra de criação de um identificador no Twine pode ser abstraída como `L(L|D)*`, onde L representa o conjunto de todas as letras e o cifrão e D representa o conjunto dos dígitos e underscore. 
 

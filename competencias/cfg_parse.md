@@ -1,5 +1,5 @@
 """
-# `[cfg_parse]`: Análise sintática em gramáticas livres de contexto 
+# `[cfg_parse]`: Análise sintática em gramáticas livres de contexto (5pts)
 
 A etapa seguinte da organização de um compilador consiste em implementar a análise sintática através da função `parse()`. Utilizaremos o [Lark](https://github.com/lark-parser/lark) novamente, mas como se trata de uma tarefa relativamente complexa e extensa, vamos criar um analisador básico e dedicar outras competências a aperfeiçoar o resultado da análise sintática.
 

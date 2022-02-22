@@ -1,4 +1,4 @@
-# `[compilador_org]`: Organização de compiladores
+# `[compilador_org]`: Organização de compiladores (5pts)
 
 Neste teste, vamos estudar a organização de um compilador/interpretador e como é o processo de partir de uma string de código fonte na linguagem de programação desejada, até a execução bem sucedida de um programa. 
 

@@ -1,5 +1,5 @@
 """
-# `[eval_fn]`: Criando funções
+# `[eval_fn]`: Criando funções (10pts)
 
 Um programa Twine é uma sequência de declarações de funções. No entanto, a implementação de eval() na competência `[eval]` executa apenas expressões Twine dentro de um ambiente. Como criamos uma declaração de função?
 

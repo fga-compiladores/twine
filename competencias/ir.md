@@ -1,5 +1,5 @@
 """
-# `[ir]`: Representação interna 
+# `[ir]`: Representação interna (5 pts)
 
 Ainda que seja natural representar código fonte utilizando árvores genéricas, muitas vezes é mais conveniente (ou eficiente) utilizar estruturas de dados específicas que possuem uma semântica mais próxima da linguagem que o objeto `Tree` fornecido pelo Lark. Estas estruturas de dados utilizadas internamente pelo compilador para representar o código e realizar as etapas posteriores de análise semântica, otimização e emissão do código final são conhecidas como "representação interna".
 

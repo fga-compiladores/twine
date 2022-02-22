@@ -8,3 +8,5 @@ Para avançar, edite o arquivo twine/info.py e execute os testes relacionados a 
     $ pytest tests/test_twine_info.py
 
 Quando tudo estiver certo, você verá um aviso dizendo que todos testes passaram.
+
+**ATENÇÃO!** Esta atividade não vale pontos e não registra nenhuma competência, mas é necessária para a avaliação das outras no trabalho.

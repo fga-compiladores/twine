@@ -1,5 +1,5 @@
 """
-# `[lex_lark]`: Análise léxica utilizando expressões regulares + Lark 
+# `[lex_lark]`: Análise léxica utilizando expressões regulares + Lark (5pts)
 
 Vamos agora reimplementar `lex()` utilizando uma biblioteca de apoio que auxilia na criação de compiladores e analisadores léxicos e sintáticos. Existem algumas opções diferentes disponíveis para Python (e várias outras para outras linguagens de programação), mas aqui utilizaremos o [Lark](https://github.com/lark-parser/lark). 
 
